@@ -11,9 +11,9 @@ const Navbar = () => {
         <div className="flex items-center">
           <img src={logo} alt="Logo" className="w-20 h-20 rounded-full mr-4" />
           <ol className="flex space-x-8 text-white font-semibold">
-            <li className="hover:text-gray-200 transition duration-300">uno</li>
-            <li className="hover:text-gray-200 transition duration-300">dos</li>
-            <li className="hover:text-gray-200 transition duration-300">tres</li>
+            <li className="hover:text-gray-200 transition duration-300">CELULARES</li>
+            <li className="hover:text-gray-200 transition duration-300">APPLE</li>
+            <li className="hover:text-gray-200 transition duration-300">GAMING</li>
           </ol>
         </div>
         <div className="flex items-center">
