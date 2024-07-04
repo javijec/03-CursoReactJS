@@ -4,7 +4,6 @@ import ItemListContainer from "./components/ItemListContainer";
 const App = () => {
   return (
     <>
-      App
       <NavBar />
       <ItemListContainer />
     </>
