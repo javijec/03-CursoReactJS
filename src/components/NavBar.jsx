@@ -13,7 +13,7 @@ const Navbar = () => {
           <ol className="flex space-x-8 text-white font-semibold">
             <li className="hover:text-gray-200 transition duration-300">CELULARES</li>
             <li className="hover:text-gray-200 transition duration-300">APPLE</li>
-            <li className="hover:text-gray-200 transition duration-300">GAMING</li>
+            <li className="hover:text-gray-200 transition duration-300">GAMINGa</li>
           </ol>
         </div>
         <div className="flex items-center">
