@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Contador from "./Contador";
 import AddItem from "./AddItem";
 
