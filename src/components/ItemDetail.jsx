@@ -1,5 +1,8 @@
 /* eslint-disable react/prop-types */
 
+import AddItem from "./AddItem";
+import Contador from "./Contador";
+
 const ItemDetail = ({ product }) => {
   if (!product) {
     return <div>No product data available.</div>;
@@ -16,7 +19,8 @@ const ItemDetail = ({ product }) => {
           <p className="text-gray-600 mb-4">{product.description}</p>
           <p className="text-xl font-semibold text-green-600 mb-2">Precio: ${product.precio}</p>
           <p className="text-gray-600 mb-2">Stock: {product.stock}</p>
-          <p className="text-gray-600 mb-2">ID del producto: {product.id}</p>
+          <Contador stock={product.stock} />
+          <AddItem product={product} />
         </div>
       </div>
     </div>

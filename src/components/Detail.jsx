@@ -9,7 +9,6 @@ const Detail = ({ id }) => {
           Detalles
         </button>
       </Link>
-      <p>ID: {id}</p>
     </div>
   );
 };
