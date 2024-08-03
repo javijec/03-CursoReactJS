@@ -2,6 +2,7 @@ import { getProduct } from "../asyncMock";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ItemDetail from "./ItemDetail";
+import Spinner from "./Spinner";
 
 const ItemDetailContainer = () => {
   const { id } = useParams();
@@ -14,7 +15,12 @@ const ItemDetailContainer = () => {
   }, [id]);
 
   if (!product) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        {" "}
+        <Spinner />{" "}
+      </div>
+    );
   }
 
   return (
