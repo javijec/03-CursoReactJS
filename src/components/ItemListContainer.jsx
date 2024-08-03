@@ -23,7 +23,7 @@ const ItemListContainer = () => {
   return (
     <div className="text-center">
       <h1 className="text-2xl">Bienvenidos a JECTEC</h1>
-      <ItemList products={products} />${console.log(products)}
+      <ItemList products={products} />
     </div>
   );
 };

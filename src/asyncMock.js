@@ -118,3 +118,26 @@ export const getProducts = () => {
     }, 500);
   });
 };
+
+export const getProduct = (id) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      console.log("Buscando producto con id:", id);
+      console.log("Tipo de id:", typeof id);
+      console.log("Productos disponibles:", products);
+
+      const product = products.find((product) => {
+        console.log("Comparando con producto id:", product.id, "tipo:", typeof product.id);
+        return product.id === parseInt(id);
+      });
+
+      if (product) {
+        console.log("Producto encontrado:", product);
+        resolve(product);
+      } else {
+        console.log("Producto no encontrado");
+        reject(new Error("Product not found"));
+      }
+    }, 500);
+  });
+};
