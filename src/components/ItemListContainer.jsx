@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import ItemList from "./ItemList";
 import { getProducts } from "../asyncMock";
 
-const ItemListContainer = ({ title }) => {
+const ItemListContainer = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -14,9 +14,8 @@ const ItemListContainer = ({ title }) => {
 
   return (
     <div className="text-center">
-      <h1 className="text-2xl">{title}</h1>
-      <ItemList products={products} />
-      ${console.log(products)}
+      <h1 className="text-2xl">Bienvenidos a JECTEC</h1>
+      <ItemList products={products} />${console.log(products)}
     </div>
   );
 };
