@@ -1,10 +1,18 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
+import AddItem from "./AddItem";
+import { useCartContext } from "../context/CartContext";
 
 const min = 0;
 
 const Contador = ({ stock }) => {
   const [count, setCount] = useState(0);
+  const { quantityItems, setQuantityItems } = useCartContext();
+
+  const handleAddItem = () => {
+    console.log(`add item ${count}`);
+    setQuantityItems(quantityItems + count);
+  };
 
   const increment = () => {
     if (count < stock) {
@@ -33,6 +41,7 @@ const Contador = ({ stock }) => {
       >
         +
       </button>
+      <AddItem onClick={handleAddItem} />
     </div>
   );
 };
