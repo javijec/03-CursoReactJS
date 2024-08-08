@@ -8,7 +8,7 @@ const Remove = ({ id }) => {
       onClick={() => {
         RemoveItemCart(id);
       }}
-      className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors">
+      className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-300">
       <FaRegTrashAlt />
     </button>
   );

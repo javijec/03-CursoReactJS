@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useCartContext } from "../context/CartContext";
 import Remove from "./Remove";
+import More from "./More";
 
 const ContadorCart = ({ name, id, price, stock }) => {
   const [quantity, setQuantity] = useState(0);
@@ -41,11 +42,7 @@ const ContadorCart = ({ name, id, price, stock }) => {
     <div className="flex items-center space-x-4">
       {button()}
       <span className="text-lg font-medium">{quantity}</span>
-      <button
-        onClick={increment}
-        className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition duration-300">
-        +
-      </button>
+      <More increment={increment} />
     </div>
   );
 };

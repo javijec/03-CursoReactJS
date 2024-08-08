@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 
-import AddItem from "./AddItem";
 import Contador from "./Contador";
 
 const ItemDetail = ({ product }) => {
@@ -23,7 +22,6 @@ const ItemDetail = ({ product }) => {
           <p className="text-gray-600 mb-2">Stock: {product.stock}</p>
           <div className="flex flex-col items-center justify-center">
             <Contador name={product.nombre} id={product.id} price={product.precio} stock={product.stock} />
-            <AddItem product={product} />
           </div>
         </div>
       </div>
