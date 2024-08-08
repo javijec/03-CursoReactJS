@@ -6,6 +6,7 @@ import Layout from "./components/Layout";
 import Error from "./components/Error";
 import ItemDetailConteiner from "./components/ItemDetailConteiner";
 import CartContextProvider from "./context/CartContext";
+import Cart from "./components/Cart";
 
 const App = () => {
   return (
@@ -13,12 +14,10 @@ const App = () => {
       <BrowserRouter>
         <Layout>
           <Routes>
-            <Route
-              path="/"
-              element={<ItemListContainer props={"Bienvenidos a JECTEC"} />}
-            />
+            <Route path="/" element={<ItemListContainer props={"Bienvenidos a JECTEC"} />} />
             <Route path="/category/:category" element={<ItemListContainer />} />
             <Route path="/detail/:id" element={<ItemDetailConteiner />} />
+            <Route path="/cart" element={<Cart />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </Layout>

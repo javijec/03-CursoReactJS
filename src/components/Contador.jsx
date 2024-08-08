@@ -1,18 +1,13 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
-import AddItem from "./AddItem";
+import { useState, useEffect } from "react";
 import { useCartContext } from "../context/CartContext";
+import AddItem from "./AddItem";
 
 const min = 0;
 
-const Contador = ({ stock }) => {
+const Contador = ({ name, id, price, stock }) => {
   const [count, setCount] = useState(0);
-  const { quantityItems, setQuantityItems } = useCartContext();
-
-  const handleAddItem = () => {
-    console.log(`add item ${count}`);
-    setQuantityItems(quantityItems + count);
-  };
+  const { cart } = useCartContext();
 
   const increment = () => {
     if (count < stock) {
@@ -26,22 +21,25 @@ const Contador = ({ stock }) => {
     }
   };
 
+  useEffect(() => {
+    const exist = cart.find((item) => item.id === id);
+    setCount(exist ? exist.quantity : 0);
+  }, [cart, id]);
+
   return (
     <div className="flex items-center space-x-4">
       <button
         onClick={decrement}
-        className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-300"
-      >
+        className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-300">
         -
       </button>
       <span className="text-lg font-medium">{count}</span>
       <button
         onClick={increment}
-        className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition duration-300"
-      >
+        className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition duration-300">
         +
       </button>
-      <AddItem onClick={handleAddItem} />
+      <AddItem name={name} id={id} price={price} count={count} />
     </div>
   );
 };
