@@ -1,12 +1,10 @@
-/* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import { useCartContext } from "../context/CartContext";
-
-const min = 0;
+import Remove from "./Remove";
 
 const ContadorCart = ({ name, id, price, stock }) => {
   const [quantity, setQuantity] = useState(0);
-  const { cart, RemoveItemCart, ModifyItemCart } = useCartContext();
+  const { cart, ModifyItemCart } = useCartContext();
 
   const increment = () => {
     if (quantity < stock) {
@@ -16,12 +14,21 @@ const ContadorCart = ({ name, id, price, stock }) => {
   };
 
   const decrement = () => {
-    if (quantity > min) {
-      ModifyItemCart(name, id, price, stock, quantity - 1);
-      setQuantity(quantity - 1);
+    setQuantity(quantity - 1);
+    ModifyItemCart(name, id, price, stock, quantity - 1);
+  };
+
+  const button = () => {
+    if (quantity > 1) {
+      return (
+        <button
+          onClick={decrement}
+          className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-300">
+          -
+        </button>
+      );
     } else {
-      RemoveItemCart(id);
-      console.log("Remove");
+      return <Remove id={id} />;
     }
   };
 
@@ -32,11 +39,7 @@ const ContadorCart = ({ name, id, price, stock }) => {
 
   return (
     <div className="flex items-center space-x-4">
-      <button
-        onClick={decrement}
-        className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-300">
-        -
-      </button>
+      {button()}
       <span className="text-lg font-medium">{quantity}</span>
       <button
         onClick={increment}

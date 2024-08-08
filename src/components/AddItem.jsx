@@ -7,10 +7,8 @@ const AddItem = ({ name, id, price, stock, quantity }) => {
   const handleAddItem = () => {
     if (quantity === 0) {
       RemoveItemCart(id);
-      console.log(cart);
     } else {
       ModifyItemCart(name, id, price, stock, quantity);
-      console.log(cart);
     }
   };
 

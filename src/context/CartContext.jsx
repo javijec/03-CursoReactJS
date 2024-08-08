@@ -15,32 +15,48 @@ const CartContextProvider = ({ children }) => {
   const [cartTotal, setCartTotal] = useState(0);
 
   useEffect(() => {
+    const cartLocal = localStorage.getItem("cart");
+    if (cartLocal) {
+      setCart(JSON.parse(cartLocal));
+      console.log(cartLocal);
+    }
+  }, []);
+
+  useEffect(() => {
     setQuantityItems(cart.reduce((accumulator, item) => accumulator + item.quantity, 0));
     setCartTotal(cart.reduce((accumulator, item) => accumulator + item.price * item.quantity, 0));
+    //localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
   const ModifyItemCart = (name, id, price, stock, quantity) => {
     const index = cart.findIndex((item) => item.id === id);
+    let newCart = [...cart];
     if (quantity > 0) {
       if (index === -1) {
-        const newCart = [...cart, { name, id, price, stock, quantity }];
+        newCart = [...cart, { name, id, price, stock, quantity }];
         setCart(newCart);
       } else {
-        const newCart = [...cart];
+        newCart = [...cart];
         newCart[index].quantity = quantity;
         setCart(newCart);
       }
     }
-    console.log(cart);
+    localStorage.setItem("cart", JSON.stringify(newCart));
   };
 
-  const RemoveItemCart = ({ id }) => {
+  const RemoveItemCart = (id) => {
     const index = cart.findIndex((item) => item.id === id);
+    if (index === -1) return;
+
     const NewCart = [...cart];
-    setQuantityItems(quantityItems - cart[index].quantity);
-    setCartTotal(cartTotal - cart[index].price * cart[index].quantity);
+    const item = NewCart[index];
+
+    setQuantityItems(quantityItems - item.quantity);
+    setCartTotal(cartTotal - item.price * item.quantity);
+
     NewCart.splice(index, 1);
     setCart(NewCart);
+    localStorage.setItem("cart", JSON.stringify(NewCart));
   };
 
   const contextValue = {
