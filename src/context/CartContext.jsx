@@ -59,12 +59,20 @@ const CartContextProvider = ({ children }) => {
     localStorage.setItem("cart", JSON.stringify(NewCart));
   };
 
+  const RemoveAllItems = () => {
+    setCart([]);
+    setQuantityItems(0);
+    setCartTotal(0);
+    localStorage.removeItem("cart");
+  };
+
   const contextValue = {
     quantityItems,
     cart,
     ModifyItemCart,
     cartTotal,
     RemoveItemCart,
+    RemoveAllItems,
   };
 
   return <Provider value={contextValue}>{children}</Provider>;
