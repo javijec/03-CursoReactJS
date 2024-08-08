@@ -19,11 +19,11 @@ const CartContextProvider = ({ children }) => {
     setCartTotal(cart.reduce((accumulator, item) => accumulator + item.price * item.quantity, 0));
   }, [cart]);
 
-  const AddItemCart = (name, id, price, quantity) => {
+  const AddItemCart = (name, id, price, stock, quantity) => {
     const index = cart.findIndex((item) => item.id === id);
     if (quantity > 0) {
       if (index === -1) {
-        const newCart = [...cart, { name, id, price, quantity }];
+        const newCart = [...cart, { name, id, price, stock, quantity }];
         setCart(newCart);
       } else {
         const newCart = [...cart];
@@ -34,7 +34,7 @@ const CartContextProvider = ({ children }) => {
     console.log(cart);
   };
 
-  const RemoveItemCart = (id) => {
+  const RemoveItemCart = ({ id }) => {
     const index = cart.findIndex((item) => item.id === id);
     const NewCart = [...cart];
     setQuantityItems(quantityItems - cart[index].quantity);

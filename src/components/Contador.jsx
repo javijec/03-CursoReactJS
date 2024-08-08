@@ -2,22 +2,23 @@
 import { useState, useEffect } from "react";
 import { useCartContext } from "../context/CartContext";
 import AddItem from "./AddItem";
+import Remove from "./Remove";
 
 const min = 0;
 
 const Contador = ({ name, id, price, stock }) => {
-  const [count, setCount] = useState(0);
+  const [quantity, setCount] = useState(0);
   const { cart } = useCartContext();
 
   const increment = () => {
-    if (count < stock) {
-      setCount(count + 1);
+    if (quantity < stock) {
+      setCount(quantity + 1);
     }
   };
 
   const decrement = () => {
-    if (count > min) {
-      setCount(count - 1);
+    if (quantity > min) {
+      setCount(quantity - 1);
     }
   };
 
@@ -26,6 +27,15 @@ const Contador = ({ name, id, price, stock }) => {
     setCount(exist ? exist.quantity : 0);
   }, [cart, id]);
 
+  const boton = () => {
+    const exist = cart.find((item) => item.id === id);
+
+    if (quantity === 0 && exist) {
+      return <Remove id={id} />;
+    }
+    return <AddItem name={name} id={id} price={price} stock={stock} quantity={quantity} />;
+  };
+
   return (
     <div className="flex items-center space-x-4">
       <button
@@ -33,13 +43,13 @@ const Contador = ({ name, id, price, stock }) => {
         className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-300">
         -
       </button>
-      <span className="text-lg font-medium">{count}</span>
+      <span className="text-lg font-medium">{quantity}</span>
       <button
         onClick={increment}
         className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition duration-300">
         +
       </button>
-      <AddItem name={name} id={id} price={price} count={count} />
+      {boton()}
     </div>
   );
 };

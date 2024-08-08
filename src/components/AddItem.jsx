@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import { useCartContext } from "../context/CartContext";
 
-const AddItem = ({ name, id, price, count }) => {
+const AddItem = ({ name, id, price, stock, quantity }) => {
   const { cart, AddItemCart } = useCartContext();
 
   const handleAddItem = () => {
-    AddItemCart(name, id, price, count);
+    AddItemCart(name, id, price, stock, quantity);
   };
 
   const exist = cart.find((item) => item.id === id);
