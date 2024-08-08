@@ -1,5 +1,5 @@
 import { useCartContext } from "../context/CartContext";
-import Contador from "./Contador";
+import ContadorCart from "./ContadorCart";
 import Remove from "./Remove";
 
 const Cart = () => {
@@ -15,7 +15,8 @@ const Cart = () => {
               <p className="text-lg font-semibold text-gray-800">{item.name}</p>
               <p className="text-sm text-gray-600">
                 Precio: ${item.price.toFixed(2)}
-                <Contador name={item.name} id={item.id} price={item.price} stock={item.stock} /> - Stock: {item.stock}
+                <ContadorCart name={item.name} id={item.id} price={item.price} stock={item.stock} /> - Stock:{" "}
+                {item.stock}
               </p>
             </div>
             <div className="flex items-center space-x-6">

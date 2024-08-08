@@ -2,10 +2,16 @@
 import { useCartContext } from "../context/CartContext";
 
 const AddItem = ({ name, id, price, stock, quantity }) => {
-  const { cart, AddItemCart } = useCartContext();
+  const { cart, ModifyItemCart, RemoveItemCart } = useCartContext();
 
   const handleAddItem = () => {
-    AddItemCart(name, id, price, stock, quantity);
+    if (quantity === 0) {
+      RemoveItemCart(id);
+      console.log(cart);
+    } else {
+      ModifyItemCart(name, id, price, stock, quantity);
+      console.log(cart);
+    }
   };
 
   const exist = cart.find((item) => item.id === id);

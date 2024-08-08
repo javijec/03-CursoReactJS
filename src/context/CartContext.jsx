@@ -19,7 +19,7 @@ const CartContextProvider = ({ children }) => {
     setCartTotal(cart.reduce((accumulator, item) => accumulator + item.price * item.quantity, 0));
   }, [cart]);
 
-  const AddItemCart = (name, id, price, stock, quantity) => {
+  const ModifyItemCart = (name, id, price, stock, quantity) => {
     const index = cart.findIndex((item) => item.id === id);
     if (quantity > 0) {
       if (index === -1) {
@@ -46,7 +46,7 @@ const CartContextProvider = ({ children }) => {
   const contextValue = {
     quantityItems,
     cart,
-    AddItemCart,
+    ModifyItemCart,
     cartTotal,
     RemoveItemCart,
   };

@@ -1,45 +1,34 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import { useCartContext } from "../context/CartContext";
-import AddItem from "./AddItem";
-import Remove from "./Remove";
 
 const min = 0;
 
-const Contador = ({ name, id, price, stock, carrito }) => {
-  const [quantity, setCount] = useState(0);
-  const { cart } = useCartContext();
+const ContadorCart = ({ name, id, price, stock }) => {
+  const [quantity, setQuantity] = useState(0);
+  const { cart, RemoveItemCart, ModifyItemCart } = useCartContext();
 
   const increment = () => {
     if (quantity < stock) {
-      setCount(quantity + 1);
+      setQuantity(quantity + 1);
+      ModifyItemCart(name, id, price, stock, quantity + 1);
     }
   };
 
   const decrement = () => {
     if (quantity > min) {
-      setCount(quantity - 1);
+      ModifyItemCart(name, id, price, stock, quantity - 1);
+      setQuantity(quantity - 1);
+    } else {
+      RemoveItemCart(id);
+      console.log("Remove");
     }
   };
 
   useEffect(() => {
     const exist = cart.find((item) => item.id === id);
-    setCount(exist ? exist.quantity : 0);
+    setQuantity(exist ? exist.quantity : 0);
   }, [cart, id]);
-
-  const boton = () => {
-    const exist = cart.find((item) => item.id === id);
-
-    if (!carrito) {
-      if (quantity === 0 && exist) {
-        return <Remove id={id} />;
-      } else if (quantity > 0) {
-        return <AddItem name={name} id={id} price={price} stock={stock} quantity={quantity} />;
-      }
-    } else {
-      return <AddItem name={name} id={id} price={price} stock={stock} quantity={quantity} />;
-    }
-  };
 
   return (
     <div className="flex items-center space-x-4">
@@ -54,9 +43,8 @@ const Contador = ({ name, id, price, stock, carrito }) => {
         className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition duration-300">
         +
       </button>
-      {boton()}
     </div>
   );
 };
 
-export default Contador;
+export default ContadorCart;
