@@ -14,7 +14,10 @@ const App = () => {
       <BrowserRouter>
         <Layout>
           <Routes>
-            <Route path="/" element={<ItemListContainer props={"Bienvenidos a JECTEC"} />} />
+            <Route
+              path="/"
+              element={<ItemListContainer props={"Bienvenidos a JECTEC"} />}
+            />
             <Route path="/category/:category" element={<ItemListContainer />} />
             <Route path="/detail/:id" element={<ItemDetailConteiner />} />
             <Route path="/cart" element={<Cart />} />

@@ -18,14 +18,19 @@ const CartContextProvider = ({ children }) => {
     const cartLocal = localStorage.getItem("cart");
     if (cartLocal) {
       setCart(JSON.parse(cartLocal));
-      console.log(cartLocal);
     }
   }, []);
 
   useEffect(() => {
-    setQuantityItems(cart.reduce((accumulator, item) => accumulator + item.quantity, 0));
-    setCartTotal(cart.reduce((accumulator, item) => accumulator + item.price * item.quantity, 0));
-    //localStorage.setItem("cart", JSON.stringify(cart));
+    setQuantityItems(
+      cart.reduce((accumulator, item) => accumulator + item.quantity, 0)
+    );
+    setCartTotal(
+      cart.reduce(
+        (accumulator, item) => accumulator + item.price * item.quantity,
+        0
+      )
+    );
   }, [cart]);
 
   const ModifyItemCart = (name, id, price, stock, quantity) => {
