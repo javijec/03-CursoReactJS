@@ -1,12 +1,12 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ItemListContainer from "./components/ItemListContainer";
-import Layout from "./components/Layout";
-import Error from "./components/Error";
-import ItemDetailConteiner from "./components/ItemDetailConteiner";
+import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
+import Layout from "./components/Layout/Layout";
+import Error from "./components/Error/Error";
+import ItemDetailConteiner from "./components/ItemDetailConteiner/ItemDetailConteiner";
 import CartContextProvider from "./context/CartContext";
-import Cart from "./components/Cart";
+import Cart from "./components/Cart/Cart";
 
 const App = () => {
   return (
