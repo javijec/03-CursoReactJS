@@ -19,7 +19,6 @@ const Navbar = () => {
 
     getDocument().then((data) => {
       if (data) {
-        console.log(data.category);
         setCategory(data.category);
       }
     });
