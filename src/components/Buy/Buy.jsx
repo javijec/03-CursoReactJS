@@ -1,4 +1,3 @@
-import React from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { db } from "../../firebase/dbConnection";
@@ -54,8 +53,7 @@ const Buy = () => {
   return (
     <button
       className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition duration-300"
-      onClick={handleClick}
-    >
+      onClick={handleClick}>
       Comprar
     </button>
   );
