@@ -1,49 +1,52 @@
-import React, { useState } from "react";
+import React from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import { db } from "../../firebase/dbConnection";
+import { collection, addDoc } from "firebase/firestore";
+import { useCartContext } from "../../context/CartContext";
 
 const MySwal = withReactContent(Swal);
 
 const Buy = () => {
-  const [name, setName] = useState("");
-  const [mail, setMail] = useState("");
+  const { RemoveAllItems, cart, cartTotal } = useCartContext();
 
   const handleClick = () => {
     MySwal.fire({
       title: "Formulario de compra",
-      html: (
-        <div>
-          <input
-            type="text"
-            id="name"
-            className="swal2-input"
-            placeholder="Nombre y Apellido"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <input
-            type="text"
-            id="mail"
-            className="swal2-input"
-            placeholder="Mail"
-            value={mail}
-            onChange={(e) => setMail(e.target.value)}
-          />
-        </div>
-      ),
+      html: `
+        <input type="text" id="name" class="swal2-input" placeholder="Nombre y Apellido" />
+        <input type="text" id="mail" class="swal2-input" placeholder="Mail" />
+      `,
       confirmButtonText: "Comprar",
       focusConfirm: false,
       preConfirm: () => {
+        const name = document.getElementById("name").value;
+        const mail = document.getElementById("mail").value;
+
         if (!name || !mail) {
           MySwal.showValidationMessage("Por favor, introduzca nombre y mail");
           return false;
         }
+
         return { name, mail };
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log("Nombre:", result.value.name);
-        console.log("Mail:", result.value.mail);
+        // Guarda los datos en Firestore
+        addDoc(collection(db, "compras"), {
+          name: result.value.name,
+          mail: result.value.mail,
+          timestamp: new Date(),
+          cart: JSON.stringify(cart),
+          cartTotal: cartTotal,
+        })
+          .then(() => {
+            console.log("Compra guardada en Firestore");
+            RemoveAllItems();
+          })
+          .catch((error) => {
+            console.error("Error al guardar la compra: ", error);
+          });
       }
     });
   };
