@@ -1,3 +1,4 @@
+// eslint-disable-next-line react/prop-types
 const More = ({ increment }) => {
   return (
     <button

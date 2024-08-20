@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useCartContext } from "../../context/CartContext";
 import { FaRegTrashAlt } from "react-icons/fa";
 

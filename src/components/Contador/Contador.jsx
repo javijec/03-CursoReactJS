@@ -2,8 +2,9 @@
 import { useState, useEffect } from "react";
 import { useCartContext } from "../../context/CartContext";
 import AddItem from "../AddItem/AddItem";
-import Remove from "../Remove/Remove";
+import Carrito from "../Carrito/Carrito";
 import More from "../More/More";
+import Less from "../Less/Less";
 
 const min = 0;
 
@@ -28,30 +29,32 @@ const Contador = ({ name, id, price, stock }) => {
     setCount(exist ? exist.quantity : 0);
   }, [cart, id]);
 
-  const boton = () => {
-    const exist = cart.find((item) => item.id === id);
-
-    if (quantity === 0 && exist) {
-      return <Remove id={id} />;
-    } else if (quantity > 0) {
+  const addButton = (quantity) => {
+    if (quantity > 0) {
       return <AddItem name={name} id={id} price={price} stock={stock} quantity={quantity} />;
     }
   };
 
-  return (
-    <>
-      <div className="flex items-center space-x-4">
-        <button
-          onClick={decrement}
-          className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-300">
-          -
-        </button>
-        <span className="text-lg font-medium">{quantity}</span>
-        <More increment={increment} />
-      </div>
-      <div>{boton()}</div>
-    </>
-  );
+  const boton = () => {
+    const exist = cart.find((item) => item.id === id);
+
+    if (exist) {
+      return <Carrito />;
+    } else {
+      return (
+        <>
+          <div className="flex items-center space-x-4">
+            <Less decrement={decrement} />
+            <span className="text-lg font-medium">{quantity}</span>
+            <More increment={increment} />
+          </div>
+          <div>{addButton(quantity)}</div>
+        </>
+      );
+    }
+  };
+
+  return <div>{boton()}</div>;
 };
 
 export default Contador;

@@ -20,7 +20,7 @@ const ItemListContainer = () => {
           ...doc.data(),
         }));
 
-        if (!category) {
+        if (category) {
           setProducts(data.filter((product) => product.category === category));
         } else {
           setProducts(data);
