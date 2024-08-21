@@ -1,12 +1,11 @@
 /* eslint-disable react/prop-types */
-
 import Contador from "../Contador/Contador";
 
 const ItemDetail = ({ product }) => {
   if (!product) {
     return <div>No product data available.</div>;
   }
-
+  console.log(product);
   return (
     <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-md overflow-hidden m-4">
       <div className="md:flex flex-col md:flex-row">

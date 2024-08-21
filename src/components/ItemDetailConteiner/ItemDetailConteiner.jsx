@@ -30,7 +30,6 @@ const ItemDetailContainer = () => {
       .then((data) => {
         if (data) {
           setProduct(data);
-        } else {
         }
       })
       .catch((error) => {
@@ -46,9 +45,9 @@ const ItemDetailContainer = () => {
       </div>
     );
   }
-
   return (
     <div>
+      {console.log(product)}
       <ItemDetail product={product} />
     </div>
   );

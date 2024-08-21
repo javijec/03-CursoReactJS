@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import { useCartContext } from "../../context/CartContext";
+
 import AddItem from "../AddItem/AddItem";
 import Carrito from "../Carrito/Carrito";
 import More from "../More/More";
