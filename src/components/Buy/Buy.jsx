@@ -31,7 +31,6 @@ const Buy = () => {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        // Guarda los datos en Firestore
         addDoc(collection(db, "compras"), {
           name: result.value.name,
           mail: result.value.mail,
@@ -39,8 +38,15 @@ const Buy = () => {
           cart: JSON.stringify(cart),
           cartTotal: cartTotal,
         })
-          .then(() => {
-            console.log("Compra guardada en Firestore");
+          .then((docRef) => {
+            console.log("Compra guardada en Firestore: ", docRef.id);
+            MySwal.fire({
+              title: "Compra guardada",
+              text: `Orden de compra: ${docRef.id}`,
+              icon: "success",
+              confirmButtonText: "Aceptar",
+            });
+
             RemoveAllItems();
           })
           .catch((error) => {
